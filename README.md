@@ -10,19 +10,19 @@ You can install Autoloader in two ways:
 
 Via pear:
 
-    stuart@ubuntu:~$ sudo pear channel-discover pear.gradwell.com 
-    Adding Channel "pear.gradwell.com" succeeded
-    Discovery of channel "pear.gradwell.com" succeeded
+    stuart@ubuntu:~$ sudo pear channel-discover pear.phix-project.org
+    Adding Channel "pear.phix-project.org" succeeded
+    Discovery of channel "pear.phix-project.org" succeeded
 
-    stuart@ubuntu:~$ sudo pear install Gradwell/Autoloader
+    stuart@ubuntu:~$ sudo pear install phix/Autoloader
     downloading Autoloader-0.0.3.tgz ...
     Starting to download Autoloader-0.0.3.tgz (1,973 bytes)
     ....done: 1,973 bytes
-    install ok: channel://pear.gradwell.com/Autoloader-0.0.3
+    install ok: channel://pear.phix-project.org/Autoloader-0.0.3
 
 From source:
 
-    git clone git@github.com:Gradwell/Autoloader.git
+    git clone git@github.com:stuartherbert/Autoloader.git
     cd Autoloader
     phing install-system
 
@@ -35,7 +35,7 @@ Simply include the autoloader, and it will automatically register itself with sp
 
     <?php
 
-    require_once 'gw.autoloader.php';
+    require_once 'autoloader.php';
 
     ?>
 
@@ -59,10 +59,10 @@ You will need the following dependencies installed first.
 
 This component includes a build.xml file containing several options to make life a little easier.
 
-    stuart@ubuntu:~/Devel/Gradwell/Autoloader$ phing
-    Buildfile: /home/stuart/Devel/Gradwell/Autoloader/build.xml
+    stuart@ubuntu:~/Devel/Phix/Autoloader$ phing
+    Buildfile: /home/stuart/Devel/Phix/Autoloader/build.xml
 
-    [property] Loading /home/stuarth/Dropbox/Devel/GWC/Autoloader/build.properties
+    [property] Loading /home/stuarth/Dropbox/Devel/Autoloader/build.properties
 
      > help:
 
@@ -98,7 +98,8 @@ License
 
 **This component is released under the new-style BSD license.**
 
-Copyright (c) 2010, Gradwell dot com Ltd
+Copyright (c) 2011, Gradwell dot com Ltd
+Copyright (c) 2011, Stuart Herbert
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:

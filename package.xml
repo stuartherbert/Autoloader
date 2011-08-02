@@ -4,7 +4,7 @@
     http://pear.php.net/dtd/package-2.0
     http://pear.php.net/dtd/package-2.0.xsd">
   <name>Autoloader</name>
-  <channel>pear.gradwell.com</channel>
+  <channel>pear.phix-project.org</channel>
   <summary>Simple PHP library for autoloading classes</summary>
   <description>
     Autoloader is a PSR0-compatible autoloader.
@@ -12,7 +12,7 @@
   <lead>
     <name>Stuart Herbert</name>
     <user>stuart</user>
-    <email>stuart.herbert@gradwell.com</email>
+    <email>stuart@stuartherbert.com</email>
     <active>yes</active>
   </lead>
   <date>${build.date}</date>
