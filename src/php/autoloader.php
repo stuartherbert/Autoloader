@@ -1,7 +1,7 @@
 <?php
 
 // autoloader support
-function __gwc_normalise_path($className)
+function __autoloader_normalise_path($className)
 {
 	 $fileName  = '';
 	 $lastNsPos = strripos($className, '\\');
@@ -17,7 +17,7 @@ function __gwc_normalise_path($className)
 
 }
 
-function __gwc_init_namespace($namespace, $fileExt = '.init.php')
+function __autoloader_init_namespace($namespace, $fileExt = '.init.php')
 {
         static $loadedNamespaces = array();
 
@@ -28,19 +28,19 @@ function __gwc_init_namespace($namespace, $fileExt = '.init.php')
                 return;
         }
 
-        $path = __gwc_normalise_path($namespace);
+        $path = __autoloader_normalise_path($namespace);
         $filename = $path . '/_init/' . end(explode('/', $path)) . $fileExt;
         $loadedModules[$namespace] = $filename;
 
-        __gwc_include($filename);
+        __autoloader_include($filename);
 }
 
-function __gwc_init_tests($namespace)
+function __autoloader_init_tests($namespace)
 {
-        __gwc_namespace($namespace, '.initTests.php');
+        __autoloader_namespace($namespace, '.initTests.php');
 }
 
-function __gwc_autoload($classname)
+function __autoloader_autoload($classname)
 {
         if (class_exists($classname) || interface_exists($classname))
         {
@@ -48,12 +48,12 @@ function __gwc_autoload($classname)
         }
 
         // convert the classname into a filename on disk
-        $classFile = __gwc_normalise_path($classname) . '.php';
+        $classFile = __autoloader_normalise_path($classname) . '.php';
 
-        return __gwc_include($classFile);
+        return __autoloader_include($classFile);
 }
 
-function __gwc_include($filename)
+function __autoloader_include($filename)
 {
        	$pathToSearch = explode(PATH_SEPARATOR, get_include_path());
 
@@ -81,7 +81,7 @@ function __gwc_include($filename)
         return FALSE;
 }
 
-function __gwc_autoload_alsoSearch($dir)
+function __autoloader_alsoSearch($dir)
 {
         $dir = realpath($dir);
 
@@ -104,8 +104,8 @@ function __gwc_autoload_alsoSearch($dir)
         set_include_path($dir . PATH_SEPARATOR . implode(PATH_SEPARATOR, $pathToSearch));
 }
 
-spl_autoload_register('__gwc_autoload');
+spl_autoload_register('__autoloader_autoload');
 // assume that we are at the top of a vendor tree to load from
-__gwc_autoload_alsoSearch(__DIR__);
+__autoloader_alsoSearch(__DIR__);
 
 ?>
