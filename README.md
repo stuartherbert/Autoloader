@@ -1,12 +1,12 @@
 Autoloader
-=============
+==========
 
-**Autoloader** is a component that provides a generic, PHP include_path aware autoloader for use in community-compliant PHP projects.
+**Autoloader** is a simple-to-use PHP component that provides a generic, PSR0-compliant autoloader for use in PHP projects.
 
 System-Wide Installation
 ------------------------
 
-Autoloader should be installed using the [PEAR Installer](http://pear.phpnet). This installer is the PHP community's de-facto standard for installing PHP components.
+Autoloader should be installed using the [PEAR Installer](http://pear.php.net). This installer is the PHP community's de-facto standard for installing PHP components.
 
     sudo pear channel-discover pear.phix-project.org
     sudo pear install --alldeps phix/Autoloader
@@ -14,31 +14,33 @@ Autoloader should be installed using the [PEAR Installer](http://pear.phpnet). T
 As A Dependency On Your Component
 ---------------------------------
 
-If you are creating a component that relies on phix/Autoloader, please make sure that you add Autoloader to your component's package.xml file:
+If you are creating a component that relies on Autoloader, please make sure that you add Autoloader to your component's package.xml file:
 
-    <dependencies>
-      <required>
-        <package>
-	  <name>Autoloader</name>
-	  <channel>pear.phix-project.org</channel>
-	  <min>3.0.0</min>
-	  <max>3.999.9999</max>
-	</package>
-      </required>
-    </dependencies>
+```xml
+<dependencies>
+  <required>
+    <package>
+      <name>Autoloader</name>
+      <channel>pear.phix-project.org</channel>
+      <min>3.0.0</min>
+      <max>3.999.9999</max>
+    </package>
+  </required>
+</dependencies>
+```
 
 Usage
 -----
 
-Simply include the autoloader, and it will automatically register itself with spl_autoload():
+Simply include the autoloader, and it will automatically register itself using spl_autoload():
 
-    <?php
+```php
+<?php
 
-    require_once 'autoloader.php';
+require_once 'psr0.autoloader.php';
 
-    ?>
-
-After that, any classes that need autoloading, Autoloader will look for them along your PHP include_path.
+?>
+```
 
 Development Environment
 -----------------------
@@ -46,6 +48,7 @@ Development Environment
 If you want to patch or enhance this component, you will need to create a suitable development environment. The easiest way to do that is to install phix4componentdev:
 
     # phix4componentdev
+    sudo apt-get install php5-xdebug
     sudo apt-get install php5-imagick
     sudo pear channel-discover pear.phix-project.org
     sudo pear -D auto_discover=1 install -Ba phix/phix4componentdev
@@ -54,6 +57,11 @@ You can then clone the git repository:
 
     # Autoloader
     git clone git://github.com/stuartherbert/Autoloader.git
+
+Then, install a local copy of this component's dependencies to complete the development environment:
+
+    # build vendor/ folder
+    phing build-vendor
 
 To make life easier for you, common tasks (such as running unit tests, generating code review analytics, and creating the PEAR package) have been automated using [phing](http://phing.info).  You'll find the automated steps inside the build.xml file that ships with the component.
 
