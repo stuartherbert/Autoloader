@@ -3,30 +3,29 @@ Autoloader
 
 **Autoloader** is a component that provides a generic, PHP include_path aware autoloader for use in community-compliant PHP projects.
 
-Installation
-------------
+System-Wide Installation
+------------------------
 
-You can install Autoloader in two ways:
+Autoloader should be installed using the [PEAR Installer](http://pear.phpnet). This installer is the PHP community's de-facto standard for installing PHP components.
 
-Via pear:
+    sudo pear channel-discover pear.phix-project.org
+    sudo pear install --alldeps phix/Autoloader
 
-    stuart@ubuntu:~$ sudo pear channel-discover pear.phix-project.org
-    Adding Channel "pear.phix-project.org" succeeded
-    Discovery of channel "pear.phix-project.org" succeeded
+As A Dependency On Your Component
+---------------------------------
 
-    stuart@ubuntu:~$ sudo pear install phix/Autoloader
-    downloading Autoloader-0.0.3.tgz ...
-    Starting to download Autoloader-0.0.3.tgz (1,973 bytes)
-    ....done: 1,973 bytes
-    install ok: channel://pear.phix-project.org/Autoloader-0.0.3
+If you are creating a component that relies on phix/Autoloader, please make sure that you add Autoloader to your component's package.xml file:
 
-From source:
-
-    git clone git@github.com:stuartherbert/Autoloader.git
-    cd Autoloader
-    phing install-system
-
-Both of these approaches will install the Autoloader code into your system's standard location (usually /usr/share/php).
+    <dependencies>
+      <required>
+        <package>
+	  <name>Autoloader</name>
+	  <channel>pear.phix-project.org</channel>
+	  <min>3.0.0</min>
+	  <max>3.999.9999</max>
+	</package>
+      </required>
+    </dependencies>
 
 Usage
 -----
@@ -41,65 +40,33 @@ Simply include the autoloader, and it will automatically register itself with sp
 
 After that, any classes that need autoloading, Autoloader will look for them along your PHP include_path.
 
-Development
------------
+Development Environment
+-----------------------
 
-You will need the following dependencies installed first.
+If you want to patch or enhance this component, you will need to create a suitable development environment. The easiest way to do that is to install phix4componentdev:
 
-* phix
-* phing
-* PHPUnit
-* xdebug
-* pdepend
-* phpDocumentor
-* phpmd
-* phpcpd
-* phpcs
-* phpcb
+    # phix4componentdev
+    sudo apt-get install php5-imagick
+    sudo pear channel-discover pear.phix-project.org
+    sudo pear -D auto_discover=1 install -Ba phix/phix4componentdev
 
-This component includes a build.xml file containing several options to make life a little easier.
+You can then clone the git repository:
 
-    stuart@ubuntu:~/Devel/Phix/Autoloader$ phing
-    Buildfile: /home/stuart/Devel/Phix/Autoloader/build.xml
+    # Autoloader
+    git clone git://github.com/stuartherbert/Autoloader.git
 
-    [property] Loading /home/stuarth/Dropbox/Devel/Autoloader/build.properties
+To make life easier for you, common tasks (such as running unit tests, generating code review analytics, and creating the PEAR package) have been automated using [phing](http://phing.info).  You'll find the automated steps inside the build.xml file that ships with the component.
 
-     > help:
-
-         [echo] Autoloader 1.0.0: build.xml targets:
-         [echo] 
-         [echo] lint
-         [echo]   Check the PHP files for syntax errors
-         [echo] test
-         [echo]   Run the component's PHPUnit tests
-         [echo] code-review
-         [echo]   Run code quality tests (pdepend, phpmd, phpcpd, phpcs)
-         [echo] build-vendor
-         [echo]   Populate vendor/ with this package's dependencies
-         [echo]   (used for running unit tests)
-         [echo] pear-package
-         [echo]   Create a PEAR-compatible package
-         [echo] install.local
-         [echo]   Install this component from source
-         [echo]   You must be root to run this target!!
-         [echo] publish
-         [echo]   Publish the pear package onto the channel server
-         [echo] hg-push
-         [echo]   Push the changes back to the Mercurial master repo
-         [echo] clean
-         [echo]   Remove all temporary folders created by this build file
-
-    BUILD FINISHED
-
-    Total time: 0.1588 seconds
+Run the command 'phing' in the component's top-level folder to see the full list of available automated tasks.
 
 License
 -------
 
 **This component is released under the new-style BSD license.**
 
-Copyright (c) 2011, Gradwell dot com Ltd
-Copyright (c) 2011, Stuart Herbert
+* Copyright (c) 2011, Stuart Herbert
+* Copyright (c) 2011, Gradwell dot com Ltd
+
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
