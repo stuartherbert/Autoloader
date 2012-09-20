@@ -1,7 +1,7 @@
-Autoloader
-==========
+Autoloader4
+===========
 
-**Autoloader** is a simple-to-use PHP component that provides a generic, PSR0-compliant autoloader for use in PHP projects.
+**Autoloader4** is a simple-to-use PHP component that provides a generic, PSR0-compliant autoloader for use in PHP projects.
 
 System-Wide Installation
 ------------------------
@@ -22,8 +22,8 @@ If you are creating a component that relies on Autoloader, please make sure that
     <package>
       <name>Autoloader</name>
       <channel>pear.phix-project.org</channel>
-      <min>3.0.0</min>
-      <max>3.999.9999</max>
+      <min>4.0.0</min>
+      <max>4.999.9999</max>
     </package>
   </required>
 </dependencies>
@@ -32,12 +32,14 @@ If you are creating a component that relies on Autoloader, please make sure that
 Usage
 -----
 
-Simply include the autoloader, and it will automatically register itself using spl_autoload():
+Include the autoloader, and then tell it to start autoloading classes for you:
 
 ```php
 <?php
 
-require_once 'psr0.autoloader.php';
+use Phix_Project\Autoloader4\PSR0_Autoloader;
+require_once('Phix_Project/Autoloader4/PSR0/Autoloader.php');
+PSR0_Autoloader::startAutoloading();
 
 ?>
 ```
@@ -72,8 +74,8 @@ License
 
 **This component is released under the new-style BSD license.**
 
-* Copyright (c) 2011, Stuart Herbert
-* Copyright (c) 2011, Gradwell dot com Ltd
+* Copyright (c) 2011-present, Stuart Herbert
+* Copyright (c) 2010, Gradwell dot com Ltd
 
 All rights reserved.
 
