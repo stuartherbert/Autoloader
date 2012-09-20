@@ -100,6 +100,11 @@ class PSR0_Autoloader
         return FALSE;
     }
 
+    public function emptySearchList()
+    {
+        set_include_path("");
+    }
+
     public function searchFirst($dir)
     {
         $dir = realpath($dir);
