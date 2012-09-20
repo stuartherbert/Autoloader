@@ -6,21 +6,21 @@ Autoloader4
 System-Wide Installation
 ------------------------
 
-Autoloader should be installed using the [PEAR Installer](http://pear.php.net). This installer is the PHP community's de-facto standard for installing PHP components.
+Autoloader4 should be installed using the [PEAR Installer](http://pear.php.net). This installer is the PHP community's de-facto standard for installing PHP components.
 
     sudo pear channel-discover pear.phix-project.org
-    sudo pear install --alldeps phix/Autoloader
+    sudo pear install --alldeps phix/Autoloader4
 
 As A Dependency On Your Component
 ---------------------------------
 
-If you are creating a component that relies on Autoloader, please make sure that you add Autoloader to your component's package.xml file:
+If you are creating a component that relies on Autoloader4, please make sure that you add Autoloader4 to your component's package.xml file:
 
 ```xml
 <dependencies>
   <required>
     <package>
-      <name>Autoloader</name>
+      <name>Autoloader4</name>
       <channel>pear.phix-project.org</channel>
       <min>4.0.0</min>
       <max>4.999.9999</max>
@@ -57,7 +57,7 @@ If you want to patch or enhance this component, you will need to create a suitab
 
 You can then clone the git repository:
 
-    # Autoloader
+    # Autoloader4
     git clone git://github.com/stuartherbert/Autoloader.git
 
 Then, install a local copy of this component's dependencies to complete the development environment:
