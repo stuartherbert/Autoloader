@@ -105,24 +105,60 @@ class PSR0_Autoloader
         set_include_path("");
     }
 
-    public function searchFirst($dir)
+    public function searchFirst($dirList)
     {
-        $dir = realpath($dir);
+        // make sure we have an array to iterate through
+        if (!is_array($dirList))
+        {
+            $dirList = array($dirList);
+        }
 
-        $this->dontSearchIn($dir);
+        // this is what we'll be adding to the search path when we're done
+        $searchPathList = array();
 
-        // add the new directory to the front of the path
-        set_include_path($dir . PATH_SEPARATOR . get_include_path());
+        // iterate through the list of folders
+        foreach ($dirList as $dir)
+        {
+            // get the absolute path
+            $dir = realpath($dir);
+
+            // remove the folder if it is already in the search list
+            $this->dontSearchIn($dir);
+
+            // add it to the end of the new list
+            $searchPathList[] = $dir;
+        }
+
+        // add the new list to the front of the path
+        set_include_path(implode(PATH_SEPARATOR, $searchPathList) . PATH_SEPARATOR . get_include_path());
     }
 
-    public function searchLast($dir)
+    public function searchLast($dirList)
     {
-        $dir = realpath($dir);
+        // make sure we have an array to iterate through
+        if (!is_array($dirList))
+        {
+            $dirList = array($dirList);
+        }
 
-        $this->dontSearchIn($dir);
+        // this is what we'll be adding to the search path when we're done
+        $searchPathList = array();
 
-        // add the new directory to the end of the path
-        set_include_path(get_include_path() . PATH_SEPARATOR . $dir);
+        // iterate through the list of folders
+        foreach ($dirList as $dir)
+        {
+            // get the absolute path
+            $dir = realpath($dir);
+
+            // remove the folder if it is already in the search list
+            $this->dontSearchIn($dir);
+
+            // add it to the end of the new list
+            $searchPathList[] = $dir;
+        }
+
+        // add the new list to the front of the path
+        set_include_path(get_include_path() . PATH_SEPARATOR . implode(PATH_SEPARATOR, $dirList));
     }
 
     public function dontSearchIn($dir)
