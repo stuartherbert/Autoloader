@@ -65,11 +65,6 @@ class PSR0_Autoloader
 
     public function autoload($classname)
     {
-        if (class_exists($classname) || interface_exists($classname))
-        {
-                return FALSE;
-        }
-
         // convert the classname into a filename on disk
         $classFile = $this->normalise_path($classname) . '.php';
 
