@@ -100,11 +100,11 @@ class PSR0_Autoloader
         $autoloader = new PSR0_Autoloader();
         spl_autoload_register(array($autoloader, 'autoload'));
 
-        // assume that we are inside a vendor tree to load from
-        $autoloader->searchFirst(realpath(__DIR__ . '/../../'));
+        // assume that we are inside a vendor folder of some kind
+        $pathToAdd = realpath(__DIR__ . '/../../../');
+        set_include_path($pathToAdd . PATH_SEPARATOR . get_include_path());
 
         // all done
         return $autoloader;
     }
 }
-
