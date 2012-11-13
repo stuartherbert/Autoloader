@@ -61,4 +61,33 @@ class PSR0_AutoloaderTest extends PHPUnit_Framework_TestCase
 
         $this->assertTrue($obj instanceof Dummy1);
     }
+
+    public function testCanAutoloadTrait()
+    {
+        // ----------------------------------------------------------------
+        // setup your test
+
+        if (!function_exists("trait_exists")) {
+                // no support for traits
+                echo "no trait support";
+                return;
+        }
+
+        $expectedTraits = array (
+                'Phix_Project\Autoloader4\Trait1' => 'Phix_Project\Autoloader4\Trait1',
+        );
+
+        // ----------------------------------------------------------------
+        // perform the change
+
+        $obj = new Dummy2();
+
+        // ----------------------------------------------------------------
+        // test the results
+
+        $this->assertTrue($obj instanceof Dummy2);
+        $actualTraits = class_uses('Phix_Project\Autoloader4\Dummy2');
+        $this->assertEquals($expectedTraits, $actualTraits);
+    }
+
 }
