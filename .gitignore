@@ -2,5 +2,5 @@
 dist
 nbproject
 review
-tmp
+.tmp
 vendor
