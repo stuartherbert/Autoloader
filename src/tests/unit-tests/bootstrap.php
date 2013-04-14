@@ -30,6 +30,7 @@ require_once(APP_TOPDIR . '/Phix_Project/Autoloader4/PSR0/Autoloader.php');
 PSR0_Autoloader::startAutoloading();
 
 // step 3: add the additional paths to the include path
+Autoloader_Path::emptySearchList();
 Autoloader_Path::searchFirst(APP_LIBDIR);
 Autoloader_Path::searchFirst(APP_TESTDIR);
 Autoloader_Path::searchFirst(APP_TOPDIR);
