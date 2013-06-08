@@ -1,29 +1,29 @@
-Autoloader
-==========
+Autoloader4
+===========
 
-**Autoloader** is a simple-to-use PHP component that provides a generic, PSR0-compliant autoloader for use in PHP projects.
+**Autoloader4** is a simple-to-use PHP component that provides a generic, PSR0-compliant autoloader for use in PHP projects.
 
 System-Wide Installation
 ------------------------
 
-Autoloader should be installed using the [PEAR Installer](http://pear.php.net). This installer is the PHP community's de-facto standard for installing PHP components.
+Autoloader4 should be installed using the [PEAR Installer](http://pear.php.net). This installer is the PHP community's de-facto standard for installing PHP components.
 
     sudo pear channel-discover pear.phix-project.org
-    sudo pear install --alldeps phix/Autoloader
+    sudo pear install --alldeps phix/Autoloader4
 
 As A Dependency On Your Component
 ---------------------------------
 
-If you are creating a component that relies on Autoloader, please make sure that you add Autoloader to your component's package.xml file:
+If you are creating a component that relies on Autoloader4, please make sure that you add Autoloader4 to your component's package.xml file:
 
 ```xml
 <dependencies>
   <required>
     <package>
-      <name>Autoloader</name>
+      <name>Autoloader4</name>
       <channel>pear.phix-project.org</channel>
-      <min>3.0.0</min>
-      <max>3.999.9999</max>
+      <min>4.0.0</min>
+      <max>4.999.9999</max>
     </package>
   </required>
 </dependencies>
@@ -32,12 +32,14 @@ If you are creating a component that relies on Autoloader, please make sure that
 Usage
 -----
 
-Simply include the autoloader, and it will automatically register itself using spl_autoload():
+Include the autoloader, and then tell it to start autoloading classes for you:
 
 ```php
 <?php
 
-require_once 'psr0.autoloader.php';
+use Phix_Project\Autoloader4\PSR0_Autoloader;
+require_once('Phix_Project/Autoloader4/PSR0/Autoloader.php');
+PSR0_Autoloader::startAutoloading();
 
 ?>
 ```
@@ -55,7 +57,7 @@ If you want to patch or enhance this component, you will need to create a suitab
 
 You can then clone the git repository:
 
-    # Autoloader
+    # Autoloader4
     git clone git://github.com/stuartherbert/Autoloader.git
 
 Then, install a local copy of this component's dependencies to complete the development environment:
@@ -72,8 +74,8 @@ License
 
 **This component is released under the new-style BSD license.**
 
-* Copyright (c) 2011, Stuart Herbert
-* Copyright (c) 2011, Gradwell dot com Ltd
+* Copyright (c) 2011-present, Stuart Herbert
+* Copyright (c) 2010, Gradwell dot com Ltd
 
 All rights reserved.
 

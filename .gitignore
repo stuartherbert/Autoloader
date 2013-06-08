@@ -2,5 +2,7 @@
 dist
 nbproject
 review
-tmp
+.tmp
 vendor
+composer.phar
+composer.lock
