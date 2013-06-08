@@ -47,47 +47,35 @@ namespace Phix_Project\Autoloader4;
 
 use PHPUnit_Framework_TestCase;
 
-class PSR0_AutoloaderTest extends PHPUnit_Framework_TestCase
+class Autoloader_PathTest extends PHPUnit_Framework_TestCase
 {
-    public function testCanAutoload()
-    {
-        // ----------------------------------------------------------------
-        // perform the change
-
-        $obj = new Dummy1();
-
-        // ----------------------------------------------------------------
-        // test the results
-
-        $this->assertTrue($obj instanceof Dummy1);
-    }
-
-    public function testCanAutoloadTrait()
+    /**
+     * @covers Phix_Project\Autoloader4\Autoloader_Path
+     */
+    public function testCanEmptySearchPath()
     {
         // ----------------------------------------------------------------
         // setup your test
 
-        if (PHP_MAJOR_VERSION < 5 || (PHP_MAJOR_VERSION == 5 && PHP_MINOR_VERSION < 4)) {
-                // no support for traits
-                echo "no trait support";
-                return;
-        }
-
-        $expectedTraits = array (
-                'Phix_Project\Autoloader4\Trait1' => 'Phix_Project\Autoloader4\Trait1',
-        );
+        // we will need to restore this shortly!
+        $origSearchPath = get_include_path();
 
         // ----------------------------------------------------------------
         // perform the change
 
-        $obj = new Dummy2();
+        Autoloader_Path::emptySearchList();
 
         // ----------------------------------------------------------------
         // test the results
 
-        $this->assertTrue($obj instanceof Dummy2);
-        $actualTraits = class_uses('Phix_Project\Autoloader4\Dummy2');
-        $this->assertEquals($expectedTraits, $actualTraits);
+        // get the new include path
+        $actualSearchPath = get_include_path();
+
+        // restore the original include path
+        set_include_path($origSearchPath);
+
+        // did this test work?
+        $this->assertNotEquals($origSearchPath, $actualSearchPath);
     }
 
 }
