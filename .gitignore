@@ -4,3 +4,5 @@ nbproject
 review
 .tmp
 vendor
+composer.phar
+composer.lock
