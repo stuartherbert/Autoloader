@@ -67,7 +67,7 @@ class PSR0_AutoloaderTest extends PHPUnit_Framework_TestCase
         // ----------------------------------------------------------------
         // setup your test
 
-        if (!function_exists("trait_exists")) {
+        if (PHP_MAJOR_VERSION < 5 || (PHP_MAJOR_VERSION == 5 && PHP_MINOR_VERSION < 4)) {
                 // no support for traits
                 echo "no trait support";
                 return;
