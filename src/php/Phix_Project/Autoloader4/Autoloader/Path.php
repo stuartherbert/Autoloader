@@ -50,7 +50,7 @@ class Autoloader_Path
 {
     static public function emptySearchList()
     {
-        set_include_path("");
+        set_include_path(PATH_SEPARATOR);
     }
 
     static public function searchFirst($dirList)
