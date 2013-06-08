@@ -1,5 +1,5 @@
 {
-	"name": "phix/autoloader",
+	"name": "phix/autoloader4",
 	"description": "Phix's Autoloader is a PSR0-compliant autoloader which supports PHP's include_path",
 	"keywords": [
 		"phix",
